@@ -16,7 +16,6 @@ package nl.theguild.lambda;
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
 import com.amazonaws.services.lambda.runtime.events.APIGatewayProxyRequestEvent;
-import com.sun.tools.javac.util.Assert;
 import nl.theguild.lambda.model.AuthorizerResponse;
 import nl.theguild.lambda.model.aws.PolicyDocument;
 import nl.theguild.lambda.model.aws.Statement;
@@ -25,14 +24,15 @@ import nl.theguild.lambda.util.JwtUtils;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public class Authorizer implements RequestHandler<APIGatewayProxyRequestEvent, AuthorizerResponse> {
 
     public AuthorizerResponse handleRequest(APIGatewayProxyRequestEvent request, Context context) {
         Map<String, String> headers = request.getHeaders();
 
-        Assert.checkNonNull(headers, "No headers");
-        Assert.checkNonNull(headers.get("authorization"), "No token");
+        Objects.requireNonNull(headers, "No headers");
+        Objects.requireNonNull(headers.get("authorization"), "No token");
 
         String authorization = headers.get("authorization");
 
