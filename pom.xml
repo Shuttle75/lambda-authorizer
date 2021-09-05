@@ -63,6 +63,12 @@
             <artifactId>aws-java-sdk-iam</artifactId>
             <version>1.11.505</version>
         </dependency>
+
+        <dependency>
+            <groupId>com.auth0</groupId>
+            <artifactId>java-jwt</artifactId>
+            <version>3.18.1</version>
+        </dependency>
     </dependencies>
 
     <profiles>
